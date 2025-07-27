@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="material_registration_view_form" model="ir.ui.view">
+        <field name="name">material.registration.view.form</field>
+        <field name="model">material.registration</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="material_name" string="Name"/>
+                        <h1>
+                            <field name="material_name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="material_code" />
+                        <field name="material_type" />
+                        <field name="supplier_id" />
+                        <field name="material_buy_price" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="material_registration_view_tree" model="ir.ui.view">
+        <field name="name">material.registration.view.tree</field>
+        <field name="model">material.registration</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="material_name"/>
+                <field name="material_code"/>
+                <field name="material_type"/>
+                <field name="supplier_id"/>
+                <field name="material_buy_price"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="material_registration_view_search" model="ir.ui.view">
+        <field name="name">material.registration.view.search</field>
+        <field name="model">material.registration</field>
+        <field name="arch" type="xml">
+            <search string="Material Registration">
+                <field name="material_name" />
+                <field name="material_code" />
+                <field name="material_type" />
+                <group expand="1" string="Group By">
+                    <filter string="Material Type" name='material_type' context="{'group_by':'material_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="material_registration_action" model="ir.actions.act_window">
+        <field name="name">Material Registration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">material.registration</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="material_registration_view_search"/>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            </p>
+        </field>
+    </record>
+
+    <menuitem 
+        id="material_registration_menu_act" 
+        name="Material Registration" 
+        parent="stock.menu_stock_inventory_control" 
+        action="material_registration_action" 
+        sequence="20"/>
+
+</odoo>
